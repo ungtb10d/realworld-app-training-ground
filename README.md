@@ -1,70 +1,693 @@
-# Getting Started with Create React App
+# ![RealWorld Example App](logo.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> ### [React](https://reactjs.org/) codebase containing real world examples
+>
+> (CRUD, auth, advanced patterns, etc.) that adheres to the
+> [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
-## Available Scripts
+### [Demo](https://github.com/gothinkster/realworld)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
 
-In the project directory, you can run:
+This codebase was created to provide a "training ground" for new web developers
+to gain experience in building a fully fledged fullstack application built with
+**[https://reactjs.org/](https://reactjs.org/)** including CRUD operations,
+authentication, routing, pagination, and more.
 
-### `yarn start`
+For more information on how to this works with other frontends/backends, head
+over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# How it works
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+> TODO: Describe the general architecture of your app here
 
-### `yarn test`
+## Getting started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Most of the initial setup of this project has already been done for you. User
+registration, sign in, and sign up workflows have already been completed so that
+developers can focus on exercising the following skills in the context of a
+React application:
 
-### `yarn build`
+1. Client-side routing with [React Router](https://reactrouter.com/web/guides/quick-start).
+2. Fetching and updating data with an [existing Rest API](https://github.com/gothinkster/realworld/tree/master/api).
+3. Form data and state handling.
+4. Planning and implementing organization and structure of React components.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Get the code and install dependencies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+First, you will need to [fork this
+repository](https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo).
+After the repository is forked, you will need to [clone the forked
+copy](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
+to your local machine and then install the dependencies. The following commands
+are an example of the steps that need to be taken:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+# First, clone the forked repository
+git clone {forked repository clone address goes here}
 
-### `yarn eject`
+# Second, navigate in the terminal to the newly cloned repository 
+cd realworld-app-training-ground
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Third and last, use yarn to install project's JavaScript package dependencies
+yarn install
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+NOTE: `yarn install` can also be accomplished by just running `yarn` in the
+project directory.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Local app development
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This project was bootstrapped with [Create React
+App](https://github.com/facebook/create-react-app). This means that a stellar
+local development environment is already set up. Some of the wonderful things
+that will make life easier when working on this application using the local
+development environment include:
 
-## Learn More
+1. The page will reload if you make edits to the source code.\
+2. [Lint errors and warnings](https://eslint.org/) will display in the console.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To start the app in development mode, run the following command from your
+terminal.\
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+yarn start
+```
 
-### Code Splitting
+This will start the development server. It should automatically open the running
+React app in your default browser, but if it does you can manually open
+[http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Using the hosted API
 
-### Analyzing the Bundle Size
+This project's [API requests](https://github.com/gothinkster/realworld/tree/master/api) use the publicly available RealWorld App API at `https://conduit.productionready.io/api`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Application Structure and Routing
 
-### Making a Progressive Web App
+#### Public Routes (does not require user to be signed in)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Home page (URL: `/` )
+  - List of tags
+  - List of articles pulled from either Feed, Global, or by Tag
+  - Pagination for list of articles
+- Sign in/Sign up pages (URL: `/login`, `/register` )
+  - Uses JWT (store the token in `localStorage`)
+- Article page (URL: `/article/article-slug-here `)
+  - Delete article button (only shown to article's author)
+  - Render markdown from server client side
+  - Comments section at bottom of page
+  - Delete comment button (only shown to comment's author)
 
-### Advanced Configuration
+#### Private Routes (requires user to be logged in)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Settings page (URL: `/settings` )
+- Editor page to create/edit articles (URL: `/editor`, `/editor/article-slug-here `)
+- Profile page (URL: `/profile/:username`, `/profile/:username/favorites `)
+  - Show basic user info
+  - List of articles populated from author's created articles or author's favorited articles
 
-### Deployment
+# Styles
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Instead of having the Bootstrap theme included locally, this projects loads the precompiled theme from the RealWorld App's CDN (the [header template](#header) does this by default):
 
-### `yarn build` fails to minify
+```html
+<link rel="stylesheet" href="//demo.productionready.io/main.css" />
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Alternatively, if you want to make modifications to the theme, check out the [theme's repo](https://github.com/gothinkster/conduit-bootstrap-template).
+
+# Templates
+
+- [Layout](#layout)
+  - [Header](#header)
+  - [Footer](#footer)
+- [Pages](#pages)
+  - [Home](#home)
+  - [Login/Register](#loginregister)
+  - [Profile](#profile)
+  - [Settings](#settings)
+  - [Create/Edit Article](#createedit-article)
+  - [Article](#article)
+
+## Layout
+
+### Header
+
+<details>
+<summary>Header HTML snippet</summary>
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Conduit</title>
+    <!-- Import Ionicon icons & Google Fonts our Bootstrap theme relies on -->
+    <link
+      href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="//fonts.googleapis.com/css?family=Titillium+Web:700|Source+Serif+Pro:400,700|Merriweather+Sans:400,700|Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Import the custom Bootstrap 4 theme from our hosted CDN -->
+    <link rel="stylesheet" href="//demo.productionready.io/main.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-light">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">conduit</a>
+        <ul class="nav navbar-nav pull-xs-right">
+          <li class="nav-item">
+            <!-- Add "active" class when you're on that page" -->
+            <a class="nav-link active" href="">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="ion-compose"></i>&nbsp;New Post
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="ion-gear-a"></i>&nbsp;Settings
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Sign up</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </body>
+</html>
+```
+
+</details>
+
+### Footer
+
+<details>
+<summary>Footer HTML snippet</summary>
+
+```html
+    <footer>
+      <div class="container">
+        <a href="/" class="logo-font">conduit</a>
+        <span class="attribution">
+          An interactive learning project from <a href="https://thinkster.io">Thinkster</a>. Code &amp; design licensed under MIT.
+        </span>
+      </div>
+    </footer>
+
+  </body>
+</html>
+```
+
+</details>
+
+## Pages
+
+### Home
+
+<details>
+<summary>Home page content HTML snippet</summary>
+
+```html
+<div class="home-page">
+  <div class="banner">
+    <div class="container">
+      <h1 class="logo-font">conduit</h1>
+      <p>A place to share your knowledge.</p>
+    </div>
+  </div>
+
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="feed-toggle">
+          <ul class="nav nav-pills outline-active">
+            <li class="nav-item">
+              <a class="nav-link disabled" href="">Your Feed</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="">Global Feed</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="article-preview">
+          <div class="article-meta">
+            <a href="profile.html"
+              ><img src="http://i.imgur.com/Qr71crq.jpg"
+            /></a>
+            <div class="info">
+              <a href="" class="author">Eric Simons</a>
+              <span class="date">January 20th</span>
+            </div>
+            <button class="btn btn-outline-primary btn-sm pull-xs-right">
+              <i class="ion-heart"></i> 29
+            </button>
+          </div>
+          <a href="" class="preview-link">
+            <h1>How to build webapps that scale</h1>
+            <p>This is the description for the post.</p>
+            <span>Read more...</span>
+          </a>
+        </div>
+
+        <div class="article-preview">
+          <div class="article-meta">
+            <a href="profile.html"
+              ><img src="http://i.imgur.com/N4VcUeJ.jpg"
+            /></a>
+            <div class="info">
+              <a href="" class="author">Albert Pai</a>
+              <span class="date">January 20th</span>
+            </div>
+            <button class="btn btn-outline-primary btn-sm pull-xs-right">
+              <i class="ion-heart"></i> 32
+            </button>
+          </div>
+          <a href="" class="preview-link">
+            <h1>
+              The song you won't ever stop singing. No matter how hard you try.
+            </h1>
+            <p>This is the description for the post.</p>
+            <span>Read more...</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="sidebar">
+          <p>Popular Tags</p>
+
+          <div class="tag-list">
+            <a href="" class="tag-pill tag-default">programming</a>
+            <a href="" class="tag-pill tag-default">javascript</a>
+            <a href="" class="tag-pill tag-default">emberjs</a>
+            <a href="" class="tag-pill tag-default">angularjs</a>
+            <a href="" class="tag-pill tag-default">react</a>
+            <a href="" class="tag-pill tag-default">mean</a>
+            <a href="" class="tag-pill tag-default">node</a>
+            <a href="" class="tag-pill tag-default">rails</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+</details>
+
+### Login/Register
+
+<details>
+<summary>Login/Register page content HTML snippet</summary>
+
+```html
+<div class="auth-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center">Sign up</h1>
+        <p class="text-xs-center">
+          <a href="">Have an account?</a>
+        </p>
+
+        <ul class="error-messages">
+          <li>That email is already taken</li>
+        </ul>
+
+        <form>
+          <fieldset class="form-group">
+            <input
+              class="form-control form-control-lg"
+              type="text"
+              placeholder="Your Name"
+            />
+          </fieldset>
+          <fieldset class="form-group">
+            <input
+              class="form-control form-control-lg"
+              type="text"
+              placeholder="Email"
+            />
+          </fieldset>
+          <fieldset class="form-group">
+            <input
+              class="form-control form-control-lg"
+              type="password"
+              placeholder="Password"
+            />
+          </fieldset>
+          <button class="btn btn-lg btn-primary pull-xs-right">Sign up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+</details>
+
+### Profile
+
+<details>
+<summary>Profile page content HTML snippet</summary>
+
+```html
+<div class="profile-page">
+  <div class="user-info">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 offset-md-1">
+          <img src="http://i.imgur.com/Qr71crq.jpg" class="user-img" />
+          <h4>Eric Simons</h4>
+          <p>
+            Cofounder @GoThinkster, lived in Aol's HQ for a few months, kinda
+            looks like Peeta from the Hunger Games
+          </p>
+          <button class="btn btn-sm btn-outline-secondary action-btn">
+            <i class="ion-plus-round"></i>
+            &nbsp; Follow Eric Simons
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-10 offset-md-1">
+        <div class="articles-toggle">
+          <ul class="nav nav-pills outline-active">
+            <li class="nav-item">
+              <a class="nav-link active" href="">My Articles</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Favorited Articles</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="article-preview">
+          <div class="article-meta">
+            <a href=""><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
+            <div class="info">
+              <a href="" class="author">Eric Simons</a>
+              <span class="date">January 20th</span>
+            </div>
+            <button class="btn btn-outline-primary btn-sm pull-xs-right">
+              <i class="ion-heart"></i> 29
+            </button>
+          </div>
+          <a href="" class="preview-link">
+            <h1>How to build webapps that scale</h1>
+            <p>This is the description for the post.</p>
+            <span>Read more...</span>
+          </a>
+        </div>
+
+        <div class="article-preview">
+          <div class="article-meta">
+            <a href=""><img src="http://i.imgur.com/N4VcUeJ.jpg" /></a>
+            <div class="info">
+              <a href="" class="author">Albert Pai</a>
+              <span class="date">January 20th</span>
+            </div>
+            <button class="btn btn-outline-primary btn-sm pull-xs-right">
+              <i class="ion-heart"></i> 32
+            </button>
+          </div>
+          <a href="" class="preview-link">
+            <h1>
+              The song you won't ever stop singing. No matter how hard you try.
+            </h1>
+            <p>This is the description for the post.</p>
+            <span>Read more...</span>
+            <ul class="tag-list">
+              <li class="tag-default tag-pill tag-outline">Music</li>
+              <li class="tag-default tag-pill tag-outline">Song</li>
+            </ul>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+</details>
+
+### Settings
+
+<details>
+<summary>Settings page content HTML snippet</summary>
+
+```html
+<div class="settings-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center">Your Settings</h1>
+
+        <form>
+          <fieldset>
+            <fieldset class="form-group">
+              <input
+                class="form-control"
+                type="text"
+                placeholder="URL of profile picture"
+              />
+            </fieldset>
+            <fieldset class="form-group">
+              <input
+                class="form-control form-control-lg"
+                type="text"
+                placeholder="Your Name"
+              />
+            </fieldset>
+            <fieldset class="form-group">
+              <textarea
+                class="form-control form-control-lg"
+                rows="8"
+                placeholder="Short bio about you"
+              ></textarea>
+            </fieldset>
+            <fieldset class="form-group">
+              <input
+                class="form-control form-control-lg"
+                type="text"
+                placeholder="Email"
+              />
+            </fieldset>
+            <fieldset class="form-group">
+              <input
+                class="form-control form-control-lg"
+                type="password"
+                placeholder="Password"
+              />
+            </fieldset>
+            <button class="btn btn-lg btn-primary pull-xs-right">
+              Update Settings
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+</details>
+
+### Create/Edit Article
+
+<details>
+<summary>Create/Edit Article page content HTML snippet</summary>
+
+```html
+<div class="editor-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-xs-12">
+        <form>
+          <fieldset>
+            <fieldset class="form-group">
+              <input
+                type="text"
+                class="form-control form-control-lg"
+                placeholder="Article Title"
+              />
+            </fieldset>
+            <fieldset class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="What's this article about?"
+              />
+            </fieldset>
+            <fieldset class="form-group">
+              <textarea
+                class="form-control"
+                rows="8"
+                placeholder="Write your article (in markdown)"
+              ></textarea>
+            </fieldset>
+            <fieldset class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter tags"
+              />
+              <div class="tag-list"></div>
+            </fieldset>
+            <button class="btn btn-lg pull-xs-right btn-primary" type="button">
+              Publish Article
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+</details>
+
+### Article
+
+<details>
+<summary>Create/Edit Article page content HTML snippet</summary>
+
+```html
+<div class="article-page">
+  <div class="banner">
+    <div class="container">
+      <h1>How to build webapps that scale</h1>
+
+      <div class="article-meta">
+        <a href=""><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
+        <div class="info">
+          <a href="" class="author">Eric Simons</a>
+          <span class="date">January 20th</span>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary">
+          <i class="ion-plus-round"></i>
+          &nbsp; Follow Eric Simons <span class="counter">(10)</span>
+        </button>
+        &nbsp;&nbsp;
+        <button class="btn btn-sm btn-outline-primary">
+          <i class="ion-heart"></i>
+          &nbsp; Favorite Post <span class="counter">(29)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container page">
+    <div class="row article-content">
+      <div class="col-md-12">
+        <p>
+          Web development technologies have evolved at an incredible clip over
+          the past few years.
+        </p>
+        <h2 id="introducing-ionic">Introducing RealWorld.</h2>
+        <p>It's a great solution for learning how other frameworks work.</p>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="article-actions">
+      <div class="article-meta">
+        <a href="profile.html"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
+        <div class="info">
+          <a href="" class="author">Eric Simons</a>
+          <span class="date">January 20th</span>
+        </div>
+
+        <button class="btn btn-sm btn-outline-secondary">
+          <i class="ion-plus-round"></i>
+          &nbsp; Follow Eric Simons <span class="counter">(10)</span>
+        </button>
+        &nbsp;
+        <button class="btn btn-sm btn-outline-primary">
+          <i class="ion-heart"></i>
+          &nbsp; Favorite Post <span class="counter">(29)</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-8 offset-md-2">
+        <form class="card comment-form">
+          <div class="card-block">
+            <textarea
+              class="form-control"
+              placeholder="Write a comment..."
+              rows="3"
+            ></textarea>
+          </div>
+          <div class="card-footer">
+            <img
+              src="http://i.imgur.com/Qr71crq.jpg"
+              class="comment-author-img"
+            />
+            <button class="btn btn-sm btn-primary">Post Comment</button>
+          </div>
+        </form>
+
+        <div class="card">
+          <div class="card-block">
+            <p class="card-text">
+              With supporting text below as a natural lead-in to additional
+              content.
+            </p>
+          </div>
+          <div class="card-footer">
+            <a href="" class="comment-author">
+              <img
+                src="http://i.imgur.com/Qr71crq.jpg"
+                class="comment-author-img"
+              />
+            </a>
+            &nbsp;
+            <a href="" class="comment-author">Jacob Schmidt</a>
+            <span class="date-posted">Dec 29th</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-block">
+            <p class="card-text">
+              With supporting text below as a natural lead-in to additional
+              content.
+            </p>
+          </div>
+          <div class="card-footer">
+            <a href="" class="comment-author">
+              <img
+                src="http://i.imgur.com/Qr71crq.jpg"
+                class="comment-author-img"
+              />
+            </a>
+            &nbsp;
+            <a href="" class="comment-author">Jacob Schmidt</a>
+            <span class="date-posted">Dec 29th</span>
+            <span class="mod-options">
+              <i class="ion-edit"></i>
+              <i class="ion-trash-a"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+</details>
