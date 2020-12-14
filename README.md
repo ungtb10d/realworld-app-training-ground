@@ -106,7 +106,7 @@ This project's [API requests](https://github.com/gothinkster/realworld/tree/mast
 
 # Styles
 
-Instead of having the Bootstrap theme included locally, we recommend loading the precompiled theme from our CDN (our [header template](#header) does this by default):
+Instead of having the Bootstrap theme included locally, this projects loads the precompiled theme from the RealWorld App's CDN (the [header template](#header) does this by default):
 
 ```html
 <link rel="stylesheet" href="//demo.productionready.io/main.css" />
@@ -130,6 +130,9 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 ## Layout
 
 ### Header
+
+<details>
+<summary>Header HTML snippet</summary>
 
 ```html
 <!DOCTYPE html>
@@ -180,7 +183,12 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 </html>
 ```
 
+</details>
+
 ### Footer
+
+<details>
+<summary>Footer HTML snippet</summary>
 
 ```html
     <footer>
@@ -196,9 +204,14 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 </html>
 ```
 
+</details>
+
 ## Pages
 
 ### Home
+
+<details>
+<summary>Home page content HTML snippet</summary>
 
 ```html
 <div class="home-page">
@@ -287,7 +300,12 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 </div>
 ```
 
+</details>
+
 ### Login/Register
+
+<details>
+<summary>Login/Register page content HTML snippet</summary>
 
 ```html
 <div class="auth-page">
@@ -333,7 +351,12 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 </div>
 ```
 
+</details>
+
 ### Profile
+
+<details>
+<summary>Profile page content HTML snippet</summary>
 
 ```html
 <div class="profile-page">
@@ -417,7 +440,12 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 </div>
 ```
 
+</details>
+
 ### Settings
+
+<details>
+<summary>Settings page content HTML snippet</summary>
 
 ```html
 <div class="settings-page">
@@ -474,7 +502,12 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 </div>
 ```
 
+</details>
+
 ### Create/Edit Article
+
+<details>
+<summary>Create/Edit Article page content HTML snippet</summary>
 
 ```html
 <div class="editor-page">
@@ -523,7 +556,12 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 </div>
 ```
 
+</details>
+
 ### Article
+
+<details>
+<summary>Create/Edit Article page content HTML snippet</summary>
 
 ```html
 <div class="article-page">
@@ -651,3 +689,5 @@ Alternatively, if you want to make modifications to the theme, check out the [th
   </div>
 </div>
 ```
+
+</details>
