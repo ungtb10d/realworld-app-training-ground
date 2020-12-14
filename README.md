@@ -17,7 +17,7 @@ over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
 
 # How it works
 
-> TODO: Describe the general architecture of your app here
+> TODO: Describe the general architecture of the app here
 
 ## Getting started
 
@@ -95,14 +95,14 @@ This project's [API requests](https://github.com/gothinkster/realworld/tree/mast
   - Render markdown from server client side
   - Comments section at bottom of page
   - Delete comment button (only shown to comment's author)
+- Profile page (URL: `/profile/:username`, `/profile/:username/favorites `)
+  - Show basic user info
+  - List of articles populated from author's created articles or author's favorited articles
 
 #### Private Routes (requires user to be logged in)
 
 - Settings page (URL: `/settings` )
 - Editor page to create/edit articles (URL: `/editor`, `/editor/article-slug-here `)
-- Profile page (URL: `/profile/:username`, `/profile/:username/favorites `)
-  - Show basic user info
-  - List of articles populated from author's created articles or author's favorited articles
 
 # Styles
 
@@ -132,7 +132,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 ### Header
 
 <details>
-<summary>Header HTML snippet</summary>
+<summary>Header HTML template</summary>
 
 ```html
 <!DOCTYPE html>
@@ -188,7 +188,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 ### Footer
 
 <details>
-<summary>Footer HTML snippet</summary>
+<summary>Footer HTML template</summary>
 
 ```html
     <footer>
@@ -211,7 +211,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 ### Home
 
 <details>
-<summary>Home page content HTML snippet</summary>
+<summary>Home page content HTML template</summary>
 
 ```html
 <div class="home-page">
@@ -305,7 +305,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 ### Login/Register
 
 <details>
-<summary>Login/Register page content HTML snippet</summary>
+<summary>Login/Register page content HTML template</summary>
 
 ```html
 <div class="auth-page">
@@ -356,7 +356,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 ### Profile
 
 <details>
-<summary>Profile page content HTML snippet</summary>
+<summary>Profile page content HTML template</summary>
 
 ```html
 <div class="profile-page">
@@ -445,7 +445,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 ### Settings
 
 <details>
-<summary>Settings page content HTML snippet</summary>
+<summary>Settings page content HTML template</summary>
 
 ```html
 <div class="settings-page">
@@ -507,7 +507,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 ### Create/Edit Article
 
 <details>
-<summary>Create/Edit Article page content HTML snippet</summary>
+<summary>Create/Edit Article page content HTML template</summary>
 
 ```html
 <div class="editor-page">
@@ -561,7 +561,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 ### Article
 
 <details>
-<summary>Create/Edit Article page content HTML snippet</summary>
+<summary>Create/Edit Article page content HTML template</summary>
 
 ```html
 <div class="article-page">
