@@ -5,8 +5,6 @@
 > (CRUD, auth, advanced patterns, etc.) that adheres to the
 > [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
-### [Demo](https://github.com/gothinkster/realworld)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
-
 This codebase was created to provide a "training ground" for new web developers
 to gain experience in building a fully fledged fullstack application built with
 **[https://reactjs.org/](https://reactjs.org/)** including CRUD operations,
@@ -15,9 +13,11 @@ authentication, routing, pagination, and more.
 For more information on how to this works with other frontends/backends, head
 over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
 
-# How it works
+### [Live demo](https://redux.productionready.io/)
 
-> TODO: Describe the general architecture of the app here
+The [Redux Example Demo](https://redux.productionready.io/) is a fully built out
+and hosted version of the RealWorld app using React and Redux. It can be
+used as reference material while training with this project.
 
 ## Getting started
 
