@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
           setUser(null);
         });
     } else {
-      history.push('/login')
+      history.push('/')
     }
   }, [history]);
 
