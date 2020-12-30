@@ -8,6 +8,7 @@ import { HomePage } from './HomePage';
 import { RegisterPage } from "./RegisterPage";
 import { LoginPage } from "./LoginPage";
 import { SettingsPage } from "./SettingsPage";
+import { CreateArticlePage } from "./CreateArticlePage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <PrivateRoute path="/settings" component={SettingsPage} />
+            <PrivateRoute path="/editor" component={CreateArticlePage} />
           </Switch>
         </div>
       </AuthProvider>

@@ -1,10 +1,15 @@
 import axios from "axios";
 
+export const IDLE = "idle";
+export const PENDING = "pending";
+export const SUCCESS = "success";
+export const FAILURE = "failure";
+
 const jwt = window.localStorage.getItem("jwt");
 
 const client = axios.create({
-  // baseURL: "https://conduit.productionready.io/api",
-  baseURL: "http://localhost:5100/api",
+  baseURL: "https://conduit.productionready.io/api",
+  // baseURL: "http://localhost:5100/api",
   headers: jwt
     ? {
         Authorization: "Token " + jwt,
@@ -26,3 +31,19 @@ export const loginUser = (credentials) =>
 
     return response.data.user;
   });
+
+export const getArticles = ({ tag }) =>
+  client
+    .get(`/articles?limit=10&tag=${tag}`)
+    .then((response) => response.data.articles);
+
+export const getTags = () =>
+  client.get("/tags").then((response) => response.data.tags);
+
+export const createArticle = (article) =>
+  client
+    .post("/articles", { article })
+    .then((response) => response.data.article);
+
+export const editArticle = (newArticleDetails, slug) =>
+  client.post(`/articles/${slug}`, { newArticleDetails });

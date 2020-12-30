@@ -1,30 +1,25 @@
 import React from "react";
-import axios from "axios";
+import { Link } from 'react-router-dom'
 
-const possibleRequestStates = {
-  IDLE: "idle",
-  PENDING: "pending",
-  SUCCESS: "success",
-  FAILURE: "failure",
-};
+import { IDLE, PENDING, SUCCESS, FAILURE, getTags } from "./api-client";
+
+const doesWordContainEmptyChar = (word) =>
+  word
+    .split("")
+    .every((stringCharacter) => stringCharacter.charCodeAt(0) !== 8204);
 
 export function TagList() {
-  const [requestState, setRequestState] = React.useState(
-    possibleRequestStates.IDLE
-  );
+  const [requestState, setRequestState] = React.useState(IDLE);
   const [tags, setTags] = React.useState([]);
 
   React.useEffect(() => {
-    setRequestState(possibleRequestStates.PENDING);
+    setRequestState(PENDING);
 
-    axios
-      .get("https://conduit.productionready.io/api/tags")
-      .then((response) => response.data.tags)
+    getTags()
       .then(setTags)
-      .then(() => void setRequestState("success"))
-      .catch((error) => {
-        setRequestState(possibleRequestStates.FAILURE);
-        console.error(error);
+      .then(() => void setRequestState(SUCCESS))
+      .catch((_error) => {
+        setRequestState(FAILURE);
       });
   }, []);
 
@@ -33,11 +28,14 @@ export function TagList() {
       <p>Popular Tags</p>
 
       <div className="tag-list">
-        {tags.map((tag) => (
-          <a href="" className="tag-pill tag-default">
-            {tag}
-          </a>
-        ))}
+        {requestState === PENDING && <span>Loading...</span>}
+        {requestState === FAILURE && <span>Could not load tags.</span>}
+        {requestState === SUCCESS &&
+          tags.filter(doesWordContainEmptyChar).map((tag) => (
+            <Link to={`/?tag=${tag}`} className="tag-pill tag-default">
+              {tag}
+            </Link>
+          ))}
       </div>
     </>
   );

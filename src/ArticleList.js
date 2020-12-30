@@ -1,43 +1,39 @@
 import React from "react";
-import axios from 'axios'
+import { useLocation } from "react-router-dom";
 
-const possibleRequestStates = {
-  IDLE: "idle",
-  PENDING: "pending",
-  SUCCESS: "success",
-  FAILURE: "failure",
-};
+import { IDLE, PENDING, SUCCESS, FAILURE, getArticles } from "./api-client";
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 export function ArticleList() {
-  const [requestState, setRequestState] = React.useState(
-    possibleRequestStates.IDLE
-  );
+  const [requestState, setRequestState] = React.useState(IDLE);
   const [articles, setArticles] = React.useState([]);
+  const query = useQuery();
+  const tag = query.get("tag");
 
   React.useEffect(() => {
-    setRequestState(possibleRequestStates.PENDING);
+    setRequestState(PENDING);
 
-    axios
-      .get("https://conduit.productionready.io/api/articles?limit=10")
-      .then((response) => response.data.articles)
+    getArticles({ tag })
       .then(setArticles)
-      .then(() => void setRequestState("success"))
-      .catch((error) => {
-        setRequestState(possibleRequestStates.FAILURE);
-        console.error(error);
+      .then(() => void setRequestState(SUCCESS))
+      .catch((_error) => {
+        setRequestState(FAILURE);
       });
-  }, []);
+  }, [tag]);
 
-  if (requestState === possibleRequestStates.PENDING) {
+  if (requestState === PENDING) {
     return <span>Loading...</span>;
   }
 
-  if (requestState === possibleRequestStates.FAILURE) {
+  if (requestState === FAILURE) {
     return <span>Sorry, your articles could not be loaded at this time.</span>;
   }
 
   return (
-    requestState === possibleRequestStates.SUCCESS &&
+    requestState === SUCCESS &&
     articles.map((article) => {
       return (
         <div className="article-preview">
@@ -49,7 +45,7 @@ export function ArticleList() {
               <a href="" className="author">
                 {article.author.username}
               </a>
-              <span className="date">January 20th</span>
+              <span className="date">{article.createdAt}</span>
             </div>
             <button className="btn btn-outline-primary btn-sm pull-xs-right">
               <i className="ion-heart"></i> {article.favoritesCount}
