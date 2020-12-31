@@ -1,17 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
-import { AuthContext } from "./Auth";
+import { AuthContext } from "./Auth"
 
 export function AppHeader() {
-  const { user } = React.useContext(AuthContext);
+  const { user } = React.useContext(AuthContext)
 
   return (
     <nav className="navbar navbar-light">
       <div className="container">
-        <a href="/" className="navbar-brand">
+        <Link to="/" className="navbar-brand">
           conduit
-        </a>
+        </Link>
         {user ? (
           <ul className="nav navbar-nav pull-xs-right">
             <li className="nav-item">
@@ -68,5 +68,5 @@ export function AppHeader() {
         )}
       </div>
     </nav>
-  );
+  )
 }

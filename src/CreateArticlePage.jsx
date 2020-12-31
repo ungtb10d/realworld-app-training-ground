@@ -1,24 +1,31 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
 
-import { createArticle } from "./api-client";
+import { createArticle } from "./api-client"
 
 export const CreateArticlePage = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [body, setBody] = useState("");
-  const [tags, setTags] = useState([]);
+  const history = useHistory()
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [body, setBody] = useState("")
+  const [tags, setTags] = useState("")
 
-  const [formErrorMessage, setFormErrorMessage] = useState("");
+  const [formErrorMessage, setFormErrorMessage] = useState("")
 
   function handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
 
     if (title === "") {
-      setFormErrorMessage("Title is required.");
+      setFormErrorMessage("Title is required.")
     }
 
     if (title !== "") {
-      createArticle({ title, description, body, tags });
+      createArticle({
+        title,
+        description,
+        body,
+        tagList: tags.split(" "),
+      }).then(() => history.push("/"))
     }
   }
 
@@ -75,5 +82,5 @@ export const CreateArticlePage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
