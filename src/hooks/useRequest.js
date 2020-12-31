@@ -1,9 +1,9 @@
-import React from "react"
+import React from 'react'
 
-export const IDLE = "idle"
-export const PENDING = "pending"
-export const SUCCESS = "success"
-export const FAILURE = "failure"
+export const IDLE = 'idle'
+export const PENDING = 'pending'
+export const SUCCESS = 'success'
+export const FAILURE = 'failure'
 
 export function useRequest(request) {
   const [state, setState] = React.useState(IDLE)

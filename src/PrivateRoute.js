@@ -1,10 +1,10 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React from 'react'
+import { Route, Redirect } from 'react-router-dom'
 
-import { AuthContext } from "./Auth";
+import { AuthContext } from './Auth'
 
 export function PrivateRoute({ component: Component, ...rest }) {
-  const { user } = React.useContext(AuthContext);
+  const { user } = React.useContext(AuthContext)
 
   return (
     <Route
@@ -12,9 +12,9 @@ export function PrivateRoute({ component: Component, ...rest }) {
         user ? (
           <Component {...rest} />
         ) : (
-          <Redirect to={{ pathname: "/", from: location }} />
+          <Redirect to={{ pathname: '/', from: location }} />
         )
       }
     />
-  );
+  )
 }

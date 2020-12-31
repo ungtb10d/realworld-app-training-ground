@@ -1,6 +1,6 @@
-import React from "react";
-import { ArticleList } from "./ArticleList";
-import { TagList } from "./TagList";
+import React from 'react'
+import { ArticleList } from './ArticleList'
+import { TagList } from './TagList'
 
 export function HomePage() {
   return (
@@ -42,5 +42,5 @@ export function HomePage() {
         </div>
       </div>
     </React.Fragment>
-  );
+  )
 }

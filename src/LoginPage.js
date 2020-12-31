@@ -1,19 +1,19 @@
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import React from 'react'
+import { Link, useHistory } from 'react-router-dom'
 
-import { AuthContext } from "./Auth";
+import { AuthContext } from './Auth'
 
 export function LoginPage() {
-  const history = useHistory();
-  const { signInUser } = React.useContext(AuthContext);
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const history = useHistory()
+  const { signInUser } = React.useContext(AuthContext)
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    signInUser({ email, password }).then(() => history.push("/"));
-  };
+    signInUser({ email, password }).then(() => history.push('/'))
+  }
 
   return (
     <div className="auth-page">
@@ -62,5 +62,5 @@ export function LoginPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

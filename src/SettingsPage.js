@@ -1,8 +1,8 @@
-import React from "react";
-import { AuthContext } from "./Auth";
+import React from 'react'
+import { AuthContext } from './Auth'
 
 export function SettingsPage() {
-  const { signOutUser } = React.useContext(AuthContext);
+  const { signOutUser } = React.useContext(AuthContext)
 
   return (
     <div className="settings-page">
@@ -21,5 +21,5 @@ export function SettingsPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

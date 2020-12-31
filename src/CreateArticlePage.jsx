@@ -1,31 +1,31 @@
-import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
-import { createArticle } from "./api-client"
+import { createArticle } from './api-client'
 
 export const CreateArticlePage = () => {
   const history = useHistory()
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [body, setBody] = useState("")
-  const [tags, setTags] = useState("")
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [body, setBody] = useState('')
+  const [tags, setTags] = useState('')
 
-  const [formErrorMessage, setFormErrorMessage] = useState("")
+  const [formErrorMessage, setFormErrorMessage] = useState('')
 
   function handleSubmit(event) {
     event.preventDefault()
 
-    if (title === "") {
-      setFormErrorMessage("Title is required.")
+    if (title === '') {
+      setFormErrorMessage('Title is required.')
     }
 
-    if (title !== "") {
+    if (title !== '') {
       createArticle({
         title,
         description,
         body,
-        tagList: tags.split(" "),
-      }).then(() => history.push("/"))
+        tagList: tags.split(' '),
+      }).then(() => history.push('/'))
     }
   }
 
@@ -35,7 +35,7 @@ export const CreateArticlePage = () => {
         <div className="row">
           <div className="col-md-10 offset-md-1 col-xs-12">
             <form onSubmit={handleSubmit}>
-              {formErrorMessage !== "" && formErrorMessage}
+              {formErrorMessage !== '' && formErrorMessage}
               <fieldset>
                 <fieldset className="form-group">
                   <input

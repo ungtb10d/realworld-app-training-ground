@@ -1,7 +1,7 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import { AuthContext } from "./Auth"
+import { AuthContext } from './Auth'
 
 export function AppHeader() {
   const { user } = React.useContext(AuthContext)

@@ -1,23 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link, useHistory } from 'react-router-dom'
 
-import { AuthContext } from "./Auth";
+import { AuthContext } from './Auth'
 
 export function RegisterPage() {
-  const { registerNewUser } = React.useContext(AuthContext);
-  const [username, setUsername] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const history = useHistory()
+  const { registerNewUser } = React.useContext(AuthContext)
+  const [username, setUsername] = React.useState('')
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     registerNewUser({
       username,
       email,
       password,
-    });
-  };
+    }).then(() => history.push('/'))
+  }
 
   return (
     <div className="auth-page">
@@ -76,5 +77,5 @@ export function RegisterPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

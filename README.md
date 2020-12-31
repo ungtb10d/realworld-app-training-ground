@@ -44,7 +44,7 @@ are an example of the steps that need to be taken:
 # First, clone the forked repository
 git clone {forked repository clone address goes here}
 
-# Second, navigate in the terminal to the newly cloned repository 
+# Second, navigate in the terminal to the newly cloned repository
 cd realworld-app-training-ground
 
 # Third and last, use yarn to install project's JavaScript package dependencies
