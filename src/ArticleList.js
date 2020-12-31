@@ -1,8 +1,8 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
 
 import { getArticles } from './api-client'
 import { useRequest } from './hooks/useRequest'
+import { useQueryParams } from './hooks/useQueryParams'
 import { isEmptyArray, renderConditional } from './utilities.js'
 
 const renderEmptyArticlesMessage = () => (
@@ -38,13 +38,12 @@ const renderArticles = (articles) =>
   ))
 
 export function ArticleList() {
-  const location = useLocation()
-  const queryParams = new URLSearchParams(location.search)
+  const queryParams = useQueryParams()
   const tag = queryParams.get('tag')
   const requestCallback = React.useCallback(() => getArticles({ tag }), [tag])
-  const cata = useRequest(requestCallback, [tag])
+  const matchRequestState = useRequest(requestCallback, [tag])
 
-  return cata({
+  return matchRequestState({
     idle: () => <></>,
     pending: () => <span>Loading...</span>,
     failure: () => (
