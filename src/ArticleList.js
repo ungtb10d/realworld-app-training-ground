@@ -41,9 +41,9 @@ export function ArticleList() {
   const queryParams = useQueryParams()
   const tag = queryParams.get('tag')
   const requestCallback = React.useCallback(() => getArticles({ tag }), [tag])
-  const cata = useRequest(requestCallback, [tag])
+  const matchRequestState = useRequest(requestCallback, [tag])
 
-  return cata({
+  return matchRequestState({
     idle: () => <></>,
     pending: () => <span>Loading...</span>,
     failure: () => (

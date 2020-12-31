@@ -25,13 +25,13 @@ const renderTags = (tags) =>
 
 export function TagList() {
   const requestCallback = React.useCallback(() => getTags(), [])
-  const cata = useRequest(requestCallback)
+  const matchRequestState = useRequest(requestCallback)
 
   return (
     <>
       <h3>Popular Tags</h3>
       <div className="tag-list">
-        {cata({
+        {matchRequestState({
           idle: () => <></>,
           pending: () => <span>Loading...</span>,
           failure: () => <span>Could not load tags.</span>,
