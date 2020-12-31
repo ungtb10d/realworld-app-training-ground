@@ -3,11 +3,25 @@ import { Link } from 'react-router-dom'
 
 import { getTags } from './api-client'
 import { useRequest } from './hooks/useRequest'
+import {
+  isEveryCharacterZeroWidthNonJoiner,
+  isEmptyArray,
+  renderConditional,
+} from './utilities.js'
 
-const doesWordContainEmptyChar = (word) =>
-  word
-    .split('')
-    .every((stringCharacter) => stringCharacter.charCodeAt(0) !== 8204)
+const renderEmptyTagsMessage = () => (
+  <span>
+    None of the articles have tags. You can tag an article during creation or
+    editing!
+  </span>
+)
+
+const renderTags = (tags) =>
+  tags.filter(isEveryCharacterZeroWidthNonJoiner).map((tag) => (
+    <Link to={`/?tag=${tag}`} className="tag-pill tag-default" key={tag}>
+      {tag}
+    </Link>
+  ))
 
 export function TagList() {
   const requestCallback = React.useCallback(() => getTags(), [])
@@ -15,23 +29,16 @@ export function TagList() {
 
   return (
     <>
-      <p>Popular Tags</p>
-
+      <h3>Popular Tags</h3>
       <div className="tag-list">
         {cata({
           idle: () => <></>,
           pending: () => <span>Loading...</span>,
           failure: () => <span>Could not load tags.</span>,
-          success: (tags) =>
-            tags.filter(doesWordContainEmptyChar).map((tag) => (
-              <Link
-                to={`/?tag=${tag}`}
-                className="tag-pill tag-default"
-                key={tag}
-              >
-                {tag}
-              </Link>
-            )),
+          success: renderConditional(isEmptyArray)(
+            renderEmptyTagsMessage,
+            renderTags,
+          ),
         })}
       </div>
     </>

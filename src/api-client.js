@@ -1,16 +1,14 @@
 import axios from 'axios'
 
-// TODO: delete these since they're in the useRequest hook now
-export const IDLE = 'idle'
-export const PENDING = 'pending'
-export const SUCCESS = 'success'
-export const FAILURE = 'failure'
+const BASE_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'https://conduit.productionready.io/api'
+    : 'http://localhost:5100/api'
 
 const jwt = window.localStorage.getItem('jwt')
 
 const client = axios.create({
-  // baseURL: "https://conduit.productionready.io/api",
-  baseURL: 'http://localhost:5100/api',
+  baseURL: BASE_URL,
   headers: jwt
     ? {
         Authorization: 'Token ' + jwt,
